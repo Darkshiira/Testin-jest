@@ -17,7 +17,7 @@ describe('testing endpoints', () => {
 
     test('post to /login should return 200 statuscode if username and password is sufficient', async () => {
 
-        const response = await request(server).post('/login').send({username: 'test', password: 'test'})
+        const response = await request(server).post('/login').send({username: 'Loki', password: 'hundben'})
         expect(response.status).toBe(200);
 
     })
