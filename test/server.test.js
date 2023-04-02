@@ -32,3 +32,7 @@ describe('testing endpoints', () => {
         })
 
 })
+
+afterAll(() => {
+    db.disconnect();
+});
