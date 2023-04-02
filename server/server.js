@@ -10,7 +10,7 @@ const schema = joi.object({
 });
 
 server.post('/register', async (req, res) => {
-    
+
     const {error} = schema.validate(req.body);
 
     if(error) { return res.status(400).json({message: 'username and password is required'})
@@ -40,6 +40,6 @@ server.post('/login', async (req, res) => {
         res.status(403).json({message: 'username or password is incorrect'})
     })
     
-server.listen(5050)
+// server.listen(5050)
 
 exports.server = server;
