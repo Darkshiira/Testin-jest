@@ -40,6 +40,6 @@ server.post('/login', async (req, res) => {
         res.status(403).json({message: 'username or password is incorrect'})
     })
     
-server.listen(5050)
+
 
 exports.server = server;
