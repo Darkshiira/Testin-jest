@@ -19,7 +19,7 @@ server.post('/register', async (req, res) => {
 
     const {username, password} = req.body;
 
-    await db.Names.insert({username, password}).then(() => {
+    await db.Names.insert({username: username, password: password}).then(() => {
         res.status(201).json({message: 'user created'})
     })
 
@@ -34,7 +34,7 @@ server.post('/login', async (req, res) => {
     const {username, password} = value;
 
     await db.Names.find().toArray().then((users) => {
-        const user = users.find((user) => user.username === username && user.password === password);
+        const user = users.find({username: username, password: password});
 
         if (user) {
             return res.status(200).json({message: 'user logged in'})
