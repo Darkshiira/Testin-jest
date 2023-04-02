@@ -1,4 +1,4 @@
-const { db } = require('../server/database');
+const { db } = require('../server/MongoDatabase');
 const {server} = require('../server/server');
 const request = require('supertest');
 
