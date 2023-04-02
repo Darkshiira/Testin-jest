@@ -9,7 +9,7 @@ const schema = joi.object({
     password: joi.string().min(3).max(30).required()
 });
 
-server.post('/register', (req, res) => {
+server.post('/register', async (req, res) => {
     
 
     const {error} = schema.validate(req.body);
@@ -19,13 +19,13 @@ server.post('/register', (req, res) => {
 
     const {username, password} = req.body;
 
-    db.Names.insert({username, password}).then(() => {
+    await db.Names.insert({username, password}).then(() => {
         res.status(201).json({message: 'user created'})
     })
 
 })
 
-server.post('/login', (req, res) => {
+server.post('/login', async (req, res) => {
     const {error, value} = schema.validate(req.body);
 
     if (error) { return res.status(401).json({message: 'username and password is required'})
@@ -33,7 +33,7 @@ server.post('/login', (req, res) => {
 
     const {username, password} = value;
 
-    db.Names.find().toArray().then((users) => {
+    await db.Names.find().toArray().then((users) => {
         const user = users.find((user) => user.username === username && user.password === password);
 
         if (user) {
