@@ -11,7 +11,6 @@ const schema = joi.object({
 
 server.post('/register', async (req, res) => {
     
-
     const {error} = schema.validate(req.body);
 
     if(error) { return res.status(400).json({message: 'username and password is required'})
@@ -33,8 +32,7 @@ server.post('/login', async (req, res) => {
 
     const {username, password} = value;
 
-    await db.Names.find().toArray().then((users) => {
-        const user = users.find({username: username, password: password});
+   const user = await db.Names.find({username: username, password: password});
 
         if (user) {
             return res.status(200).json({message: 'user logged in'})
