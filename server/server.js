@@ -2,7 +2,7 @@ const express = require('express');
 const server = express();
 server.use(express.json());
 const joi = require('joi');
-const db = require('./database');
+const {db} = require('./database');
 
 const schema = joi.object({
     username: joi.string().min(3).max(30).required(),
@@ -41,5 +41,6 @@ server.post('/login', async (req, res) => {
         res.status(403).json({message: 'username or password is incorrect'})
     })
     
+server.listen(5050)
 
 exports.server = server;
