@@ -20,6 +20,7 @@ server.post('/register', async (req, res) => {
 
     const createdUser = await db.Names.insertOne({username: username, password: password});
       if (createdUser){ res.status(201).json({message: 'user created'})}
+      else {res.status(500).json({message: 'something went wrong'})}
 })
 
 server.post('/login', async (req, res) => {
